@@ -10,4 +10,7 @@ web-server/node_modules/
 web-server/ssl/nginx-selfsigned.crt
 web-server/ssl/nginx-selfsigned.key
 
+#cloudflared
+web-server/cloudflared/edit-zone-dns-toke.txt
+web-server/cloudflared/tunnel-uuid.txt
 # ----------------------------------

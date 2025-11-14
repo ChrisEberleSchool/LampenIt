@@ -1,9 +1,19 @@
+/**
+ * 
+ * This file is the node js server run by each defined instance 
+ * in docker. 
+ */
+
 const express = require('express');
 const path = require('path');
 const app = express();
 const port = 3000;
 
-// The environment var defined inside of docker-compose.yaml
+/** 
+ * The environment var defined inside of docker-compose.yaml.
+ * This allows docker to rune all the instances of servers in the 
+ * docker-compose.yaml file.
+*/
 const replicaApp = process.env.APP_NAME
 
 app.use(express.static(path.join(__dirname, 'www')));
