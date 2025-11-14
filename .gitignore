@@ -1,1 +1,16 @@
+# Environment variables
 .env
+
+# Package Ignores
+web-server/node_modules/
+
+# ---------- WEB-SERVER ------------
+
+#ssl certs
+web-server/ssl/nginx-selfsigned.crt
+web-server/ssl/nginx-selfsigned.key
+
+#cloudflared
+web-server/cloudflared/edit-zone-dns-toke.txt
+web-server/cloudflared/tunnel-uuid.txt
+# ----------------------------------
