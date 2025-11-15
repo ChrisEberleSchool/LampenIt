@@ -6,38 +6,6 @@ Lampen IT is a modern web application where people can **hang out, chat, explore
 
 ---
 
-## Project Overview
-
-Lampen IT is designed around a fully self-contained and reproducible environment. Everything — backend, frontend, proxy, SSL, tunneling — is managed inside Docker, giving you:
-
-* **Consistent deployments**
-* **Self-hosted control**
-* **A production-ready Nginx reverse proxy**
-* **Secure public access via Cloudflared tunnels**
-* **A modular directory structure**, each with its own setup guide
-
----
-
-## Tech Stack
-
-### **Backend**
-
-* Node.js
-* Express.js
-
-### **Infrastructure**
-
-* Docker & Docker Compose
-* Nginx (reverse proxy)
-* Cloudflared Tunnel (secure domain exposure)
-
-### **Other**
-
-* Environment variable separation (`.env` per service)
-* Modular configuration
-
----
-
 ## Project Structure
 
 Each directory in this repository includes its own **README** detailing how to set up and understand that specific component.
@@ -61,38 +29,17 @@ web-server/cloudflared/README.md
 
 ---
 
-## Docker + Nginx Architecture
+# Developer Build Guide (LINUX)
 
-Your system runs inside Docker containers orchestrated with Docker Compose. Nginx acts as:
+1. Setup Cloudflare tunnel (See README in web-server/cloudflared)
 
-* A reverse proxy
-* A traffic router
-* A static asset server
+2. install packages following READMEs in game-server & web-server.
 
-This provides a clean, scalable deployment pattern.
+3. Create the docker Architecture
+    
+        sudo docker compose --build -d
 
-Full details are provided in:
-
-```
-/web-server/README.md
-```
-
----
-
-## Features
-
-* Fully self-hosted platform
-* Secure Cloudflare Tunnel exposure
-* Hangout & chat system
-* Modular, clean directory structure
-* Infrastructure built for long-term stability
-
----
-
-## About Lampen IT
-
-Lampen IT is meant to be a fun space — a customizable, personal digital environment where people can interact and explore, powered by modern hosting practices.
-
-Feel free to fork, customize, break, rebuild, and make it your own.
-
+4. Start cloudflared tunnel in persistent foreground terminal
+    
+        cloudflared tunnel run
 ---
