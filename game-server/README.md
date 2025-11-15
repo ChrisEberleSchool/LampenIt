@@ -2,7 +2,7 @@
 
 1. Navigate to the this dir.
     
-        cd /front-end
+        cd /game-server
 
 2. install the packages.
     
@@ -11,8 +11,6 @@
 3. Create the build file.
     
         npm run build
-
-4. Take a copy of the build file and drag it into web-server dir.
     
 
 ---
