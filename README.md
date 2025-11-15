@@ -31,7 +31,7 @@ web-server/cloudflared/README.md
 
 # Developer Build Guide (LINUX)
 
-1. Setup Cloudflare tunnel (See README in web-server/cloudflared)
+1. Setup Cloudflare tunnel (See README in nginx/cloudflared)
 
 2. install packages following READMEs in game-server & web-server.
 

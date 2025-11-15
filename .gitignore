@@ -15,8 +15,8 @@ nginx/ssl/nginx-selfsigned.crt
 nginx/ssl/nginx-selfsigned.key
 
 #cloudflared
-web-server/cloudflared/edit-zone-dns-toke.txt
-web-server/cloudflared/tunnel-uuid.txt
+nginx/cloudflared/edit-zone-dns-toke.txt
+nginx/cloudflared/tunnel-uuid.txt
 # ----------------------------------
 
 # ----------- FRONT-END ------------
