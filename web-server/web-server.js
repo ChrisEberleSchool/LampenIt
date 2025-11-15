@@ -1,23 +1,30 @@
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.json());
 
-// Catch all
-app.use((req, res, next) => {
-  // skip API routes for gameserver
-  if (req.path.startsWith('/api')) return next();
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// ===== API ROUTES =====
+const apiRouter = express.Router();
+
+apiRouter.get('/health', (req, res) => res.json({ status: 'ok' }));
+
+apiRouter.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  if (username === '123' && password === '123') {
+    return res.json({ login: 'Successful', username });
+  }
+  return res.status(401).json({ error: 'Invalid username or password' });
 });
 
+apiRouter.post('/register', (req, res) => {
+  const { username, password } = req.body;
+  res.json({ registration: 'Successful', username });
+});
+
+app.use('/api/web', apiRouter);
+
+// Start server
 app.listen(PORT, () => {
-  console.log(`Frontend server running on port ${PORT}`);
+  console.log(`Web server running on port ${PORT}`);
 });

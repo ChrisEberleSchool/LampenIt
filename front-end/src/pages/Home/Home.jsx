@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../styles/main.css';
-import backgroundImage from '../assets/space.png';
+import styles from './Home.module.css';
+import backgroundImage from '../../assets/space.png';
 
-export default function UnderConstruction() {
+export default function Home() {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
@@ -13,12 +13,12 @@ export default function UnderConstruction() {
 
   return (
     <div
-      className="parallax-container"
+      className={styles.parallaxContainer}
       onMouseMove={handleMouseMove}
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div
-        className="overlay-text"
+        className={styles.overlayText}
         style={{ transform: `translate(${offset.x}px, ${offset.y}px)` }}
       >
         <h1>Under Construction</h1>
