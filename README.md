@@ -33,7 +33,7 @@ web-server/cloudflared/README.md
 
 1. Setup Cloudflare tunnel (See README in nginx/cloudflared)
 
-2. install packages following READMEs in game-server & web-server.
+2. install packages and follow setup guide READMEs in folders game-server, web-server, front-end & nginx.
 
 3. Create the docker Architecture
     
@@ -43,3 +43,5 @@ web-server/cloudflared/README.md
     
         cloudflared tunnel run
 ---
+
+- sudo systemctl stop nginx
