@@ -1,8 +1,9 @@
 {
-  "name": "lampen-it",
+  "name": "web-server",
   "version": "0.0.1",
-  "description": "Self-hosted Lampen IT full-stack web application",
+  "description": "Web server for static content",
   "main": "web-server.js",
+  "type": "module",
   "scripts": {
     "start": "node web-server.js",
     "dev": "nodemon web-server.js"
@@ -11,11 +12,12 @@
   "author": "Chris Eberle",
   "license": "ISC",
   "dependencies": {
-    "browser-sync": "^3.0.4",
-    "express": "^4.18.2",
-    "path": "^0.12.7"
+    "express": ">=5.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }

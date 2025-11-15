@@ -1,33 +1,23 @@
-/**
- * 
- * This file is the node js server run by each defined instance 
- * in docker. 
- */
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const express = require('express');
-const path = require('path');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
-/** 
- * The environment var defined inside of docker-compose.yaml.
- * This allows docker to rune all the instances of servers in the 
- * docker-compose.yaml file.
-*/
-const replicaApp = process.env.APP_NAME
+app.use(express.static(path.join(__dirname, 'build')));
 
-app.use(express.static(path.join(__dirname, 'www')));
-
-app.use('/images', express.static(path.join(__dirname, 'images')));
-
-// Hide Express fingerprint
-app.disable('x-powered-by');
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'www', 'index.html'));
-    console.log(`Request served by ${replicaApp}`);
+// Catch all
+app.use((req, res, next) => {
+  // skip API routes for gameserver
+  if (req.path.startsWith('/api')) return next();
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(port, () => {
-    console.log(`node app is listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Frontend server running on port ${PORT}`);
 });

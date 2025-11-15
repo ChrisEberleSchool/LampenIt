@@ -1,15 +1,12 @@
-FROM node:14
+FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy only package.json for caching npm install
-COPY package.json .
+COPY package*.json ./
+RUN npm install --production
 
-RUN npm install
-RUN npm install -g nodemon
+COPY build ./build
+COPY web-server.js ./web-server.js
 
-# Expose the port
 EXPOSE 3000
-
-# Use npm dev script for nodemon
-CMD ["npm", "run", "dev"]
+CMD ["node", "web-server.js"]
