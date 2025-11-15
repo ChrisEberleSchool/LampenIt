@@ -1,0 +1,37 @@
+version: '3'
+services:
+  lampen-it-0:
+    build: .
+    environment: 
+      - APP_NAME=lampen-it-0
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./web-server.js:/app/web-server.js
+      - ./www:/app/www
+      - ./images:/app/images
+      - ./package.json:/app/package.json
+
+  lampen-it-1:
+    build: .
+    environment: 
+      - APP_NAME=lampen-it-1
+    ports:
+      - "3002:3000"
+    volumes:
+      - ./web-server.js:/app/web-server.js
+      - ./www:/app/www
+      - ./images:/app/images
+      - ./package.json:/app/package.json
+
+  lampen-it-2:
+    build: .
+    environment: 
+      - APP_NAME=lampen-it-2
+    ports:
+      - "3003:3000"
+    volumes:
+      - ./web-server.js:/app/web-server.js
+      - ./www:/app/www
+      - ./images:/app/images
+      - ./package.json:/app/package.json
