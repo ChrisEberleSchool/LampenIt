@@ -33,8 +33,11 @@ cloudflared tunnel create <tunnel-name>
 This generates a `<UUID>.json` file inside the `~/.cloudflared` directory—this UUID is your **Tunnel ID**.
 
 ---
+### 3. Configure config.yaml file in this dir, Adding in the tunnel ID you just created and adding your domain in the slots where it asks. 
 
-### 3. Generate DNS routes
+### 4. Add this config.yaml you just modified to the `~/.cloudflared` dir you created in step 1.
+
+### 5. Generate DNS routes
 
 Run the following commands to create your DNS records:
 
@@ -45,7 +48,7 @@ cloudflared tunnel route dns <tunnel-name> www.<domain-url>
 
 ---
 
-### 4. Start the tunnel
+### 6. Start the tunnel
 
 ```bash
 sudo cloudflared tunnel run <tunnel-name>
