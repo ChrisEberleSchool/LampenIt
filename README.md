@@ -37,7 +37,7 @@ web-server/cloudflared/README.md
 
 3. Create the docker Architecture
     
-        sudo docker compose --build -d
+        sudo docker compose up --build -d
 
 4. Start cloudflared tunnel in persistent foreground terminal
     
