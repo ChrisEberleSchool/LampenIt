@@ -56,7 +56,7 @@ Lampen IT uses **Cloudflared Tunnels** instead of open firewall ports. This give
 Setup instructions for the Cloudflare tunnel live in:
 
 ```
-/cloudflared/README.md
+web-server/cloudflared/README.md
 ```
 
 ---
@@ -79,18 +79,6 @@ Full details are provided in:
 
 ---
 
-## Running the Application
-
-Once configured, starting your application is as simple as:
-
-```bash
-docker compose up -d --build
-```
-
-Your services — Express backend, Nginx proxy, Cloudflare Tunnel — all come online automatically.
-
----
-
 ## Features
 
 * Fully self-hosted platform
@@ -98,14 +86,6 @@ Your services — Express backend, Nginx proxy, Cloudflare Tunnel — all come o
 * Hangout & chat system
 * Modular, clean directory structure
 * Infrastructure built for long-term stability
-
----
-
-## Contribution & Development
-
-More detailed instructions for local development and contribution live inside each directory’s README.
-
-If you are extending or modifying a service, always check its specific guide.
 
 ---
 

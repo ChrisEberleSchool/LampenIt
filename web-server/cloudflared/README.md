@@ -34,7 +34,7 @@ This generates a `<UUID>.json` file inside the `~/.cloudflared` directory—this
 
 ---
 
-### 3. Create your `config.yml`
+### 3. Create your `config.yaml`
 
 Inside the `~/.cloudflared` directory, create a file named `config.yml`.
 
