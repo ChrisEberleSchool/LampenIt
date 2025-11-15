@@ -8,9 +8,4 @@
     
         npm install
 
-3. Create the build file.
-    
-        npm run build
-    
-
 ---
