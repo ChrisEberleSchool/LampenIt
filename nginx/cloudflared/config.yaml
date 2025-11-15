@@ -1,16 +1,16 @@
-tunnel: 7f1b89dc-4368-49c0-9afa-1f97bdf035f7
-credentials-file: /home/chris/.cloudflared/7f1b89dc-4368-49c0-9afa-1f97bdf035f7.json
+tunnel: <tunnel-id>
+credentials-file: /home/chris/.cloudflared/<tunnel-id>.json
 origincert: /home/chris/.cloudflared/cert.pem 
 
 ingress:
-  - hostname: fishhub.ca
+  - hostname: <domain>
     service: https://localhost:443
     originRequest:
-      originServerName: fishhub.ca
+      originServerName: <domain>
       insecureSkipVerify: true
-  - hostname: www.fishhub.ca
+  - hostname: www.<domain>
     service: https://localhost:443
     originRequest:
-      originServerName: fishhub.ca
+      originServerName: <domain>
       insecureSkipVerify: true
   - service: http_status:404
