@@ -1,0 +1,23 @@
+{
+  "name": "web-server",
+  "version": "0.0.1",
+  "description": "Web server for static content",
+  "main": "web-server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node web-server.js",
+    "dev": "nodemon web-server.js"
+  },
+  "keywords": [],
+  "author": "Chris Eberle",
+  "license": "ISC",
+  "dependencies": {
+    "express": ">=5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
