@@ -54,7 +54,7 @@ ingress:
 
 ```
 
-### 4. Add this config.yaml you just modified to the `~/.cloudflared` dir you created in step 1.
+### 4. Also add the config.yaml you just modified to the `~/.cloudflared` dir you created in step 1.
 
 ---
 ### 5. Generate DNS routes
