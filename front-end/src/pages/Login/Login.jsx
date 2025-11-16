@@ -12,7 +12,8 @@ export default function Login() {
     setError('');
 
     try {
-      const res = await fetch('/api/web/login', {
+      // Login request to your public login endpoint
+      const res = await fetch('/api/web/public/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -21,15 +22,40 @@ export default function Login() {
       const data = await res.json();
 
       if (res.ok) {
-        // Save JWT token or whatever response you get
-        localStorage.setItem('token', data.token || 'demo-token');
-        navigate('/dashboard');
+        // Save the JWT returned by the backend
+        localStorage.setItem('token', data.token);
+        // Redirect after login
+        navigate('/dashboard'); 
       } else {
         setError(data.error || 'Login failed');
       }
     } catch (err) {
       console.error(err);
       setError(`Server error: ${err}`);
+    }
+  };
+
+  // Example function to call a private API route after login
+  const fetchPrivateData = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setError('No token found, please login first');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/web/private/health', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // JWT goes here
+        },
+      });
+
+      const data = await res.json();
+      console.log('Private API response:', data);
+    } catch (err) {
+      console.error(err);
+      setError('Failed to fetch private data');
     }
   };
 
@@ -60,6 +86,11 @@ export default function Login() {
           Login
         </button>
       </form>
+
+      {/* Optional button to test private API */}
+      <button onClick={fetchPrivateData} style={{ marginTop: '1rem' }}>
+        Test Private API
+      </button>
     </div>
   );
 }
