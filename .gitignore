@@ -8,6 +8,10 @@ nginx/cloudflared/tunnel-uuid.txt
 nginx/cloudflared/config.yaml
 # ----------------------------------
 
+# ---------- NGINX ------------
+nginx/nginx.conf
+# ----------------------------------
+
 # ---------- GAME-SERVER ------------
 game-server/node_modules/
 # ----------------------------------
