@@ -1,16 +1,18 @@
-/**
- * Game server API instance
- */
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const replicaApp = process.env.APP_NAME || 'game-server';
 
+const internalAuth = process.env.X_INTERNAL_AUTH;
+
 app.use(express.json());
 
-// Catch-all for testing
-app.use('*', (req, res) => {
-  res.json({ message: `Request handled by ${replicaApp}` });
+// Middleware to check Nginx internal header
+app.use('/api/game', (req, res, next) => {
+  if (req.headers['x-internal-auth'] !== internalAuth) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+  next();
 });
 
 app.listen(port, () => {

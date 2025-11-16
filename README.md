@@ -44,4 +44,12 @@ web-server/cloudflared/README.md
         cloudflared tunnel run
 ---
 
-- sudo systemctl stop nginx
+# Additional useful commands
+1. Stopping nginx background service:
+
+        sudo systemctl stop nginx
+
+2. Enabling KVM extension to run Docker on Ubuntu:
+
+        sudo modprobe kvm                                               
+        sudo modprobe kvm_amd

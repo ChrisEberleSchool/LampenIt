@@ -20,6 +20,8 @@ services:
       - game-server-1
     networks:
       - lampenit-net
+    env_file:
+      - .env  
 
   # ----------------- React frontend servers -----------------
   frontend-server-0:
@@ -31,6 +33,8 @@ services:
       - NODE_ENV=development
       - PORT=3000
       - APP_NAME=frontend-server-0
+      - X_INTERNAL_AUTH=${X_INTERNAL_AUTH} 
+      - JWT_SECRET=${JWT_SECRET}  
     networks:
       - lampenit-net
 
@@ -43,6 +47,8 @@ services:
       - NODE_ENV=development
       - PORT=3000
       - APP_NAME=frontend-server-1
+      - X_INTERNAL_AUTH=${X_INTERNAL_AUTH} 
+      - JWT_SECRET=${JWT_SECRET}  
     networks:
       - lampenit-net
 
@@ -56,6 +62,8 @@ services:
       - NODE_ENV=development
       - PORT=3000
       - APP_NAME=game-server-0
+      - X_INTERNAL_AUTH=${X_INTERNAL_AUTH} 
+      - JWT_SECRET=${JWT_SECRET}  
     networks:
       - lampenit-net
 
@@ -68,6 +76,22 @@ services:
       - NODE_ENV=development
       - PORT=3000
       - APP_NAME=game-server-1
+      - X_INTERNAL_AUTH=${X_INTERNAL_AUTH} 
+      - JWT_SECRET=${JWT_SECRET}  
+    networks:
+      - lampenit-net
+
+# ----------------------- DB -------------------------
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: lampenit
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - lampenit-db-data:/var/lib/postgresql/data
     networks:
       - lampenit-net
 
@@ -76,3 +100,7 @@ services:
 networks:
   lampenit-net:
     driver: bridge
+
+# ----------------- Named volume for DB -----------------
+volumes:
+  lampenit-db-data:
