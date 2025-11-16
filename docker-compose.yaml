@@ -86,14 +86,15 @@ services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: example
-      POSTGRES_DB: lampenit
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     volumes:
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
       - lampenit-db-data:/var/lib/postgresql/data
     networks:
       - lampenit-net
+
 
 
 # ----------------- Shared network -----------------

@@ -4,6 +4,7 @@ import pkg from 'pg';
 
 const internalAuth = process.env.X_INTERNAL_AUTH;
 
+
 const { Pool } = pkg;
 
 const app = express();
@@ -13,12 +14,12 @@ app.use(express.json());
 
 // Postgres connection pool
 const pool = new Pool({
-  user: 'root',
-  host: 'db',   
-  database: 'lampenit',
-  password: 'example',
-  port: 5432,
-});
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+})
 
 // Middleware to check Nginx internal header
 app.use('/api/web', (req, res, next) => {
