@@ -34,9 +34,11 @@ web-server/cloudflared/README.md
 1. Setup Cloudflare tunnel (See README in nginx/cloudflared)
 
 2. install packages and follow setup guide READMEs in folders game-server, web-server, front-end & nginx.
+2. install packages and follow setup guide READMEs in folders game-server, web-server, front-end & nginx.
 
 3. Create the docker Architecture
     
+        sudo docker compose up --build -d
         sudo docker compose up --build -d
 
 4. Start cloudflared tunnel in persistent foreground terminal
@@ -44,4 +46,12 @@ web-server/cloudflared/README.md
         cloudflared tunnel run
 ---
 
-- sudo systemctl stop nginx
+# Additional useful commands
+1. Stopping nginx background service:
+
+        sudo systemctl stop nginx
+
+2. Enabling KVM extension to run Docker on Ubuntu:
+
+        sudo modprobe kvm                                               
+        sudo modprobe kvm_amd

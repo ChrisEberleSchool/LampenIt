@@ -1,6 +1,16 @@
 # Environment variables
 .env
 
+# ---------- CLOUDFLARE ------------
+nginx/cloudflared/edit-zone-dns-toke.txt
+nginx/cloudflared/tunnel-uuid.txt
+
+nginx/cloudflared/config.yaml
+# ----------------------------------
+
+# ---------- NGINX ------------
+nginx/nginx.conf
+# ----------------------------------
 
 # ---------- GAME-SERVER ------------
 game-server/node_modules/
@@ -12,10 +22,6 @@ web-server/node_modules/
 #ssl certs
 nginx/ssl/nginx-selfsigned.crt
 nginx/ssl/nginx-selfsigned.key
-
-#cloudflared
-nginx/cloudflared/edit-zone-dns-toke.txt
-nginx/cloudflared/tunnel-uuid.txt
 # ----------------------------------
 
 # ----------- FRONT-END ------------
