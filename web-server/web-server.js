@@ -74,4 +74,5 @@ app.use('/api/web', apiRouter);
 // Start server
 app.listen(PORT, () => {
   console.log(`Web server running on port ${PORT}`);
+  console.log(`Web server running on port ${PORT}`);
 });
