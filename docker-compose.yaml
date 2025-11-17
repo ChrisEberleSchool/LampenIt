@@ -29,12 +29,8 @@ services:
       context: ./web-server
       dockerfile: Dockerfile
     container_name: lampenit-web-server-0
-    environment:
-      - NODE_ENV=development
-      - PORT=3000
-      - APP_NAME=frontend-server-0
-      - X_INTERNAL_AUTH=${X_INTERNAL_AUTH} 
-      - JWT_SECRET=${JWT_SECRET}  
+    env_file:
+      - .env  
     networks:
       - lampenit-net
 
@@ -43,12 +39,8 @@ services:
       context: ./web-server
       dockerfile: Dockerfile
     container_name: lampenit-web-server-1
-    environment:
-      - NODE_ENV=development
-      - PORT=3000
-      - APP_NAME=frontend-server-1
-      - X_INTERNAL_AUTH=${X_INTERNAL_AUTH} 
-      - JWT_SECRET=${JWT_SECRET}  
+    env_file:
+      - .env
     networks:
       - lampenit-net
 
@@ -58,12 +50,8 @@ services:
       context: ./game-server
       dockerfile: Dockerfile
     container_name: lampenit-game-server-0
-    environment:
-      - NODE_ENV=development
-      - PORT=3000
-      - APP_NAME=game-server-0
-      - X_INTERNAL_AUTH=${X_INTERNAL_AUTH} 
-      - JWT_SECRET=${JWT_SECRET}  
+    env_file:
+      - .env
     networks:
       - lampenit-net
 
@@ -72,12 +60,8 @@ services:
       context: ./game-server
       dockerfile: Dockerfile
     container_name: lampenit-game-server-1
-    environment:
-      - NODE_ENV=development
-      - PORT=3000
-      - APP_NAME=game-server-1
-      - X_INTERNAL_AUTH=${X_INTERNAL_AUTH} 
-      - JWT_SECRET=${JWT_SECRET}  
+    env_file:
+      - .env
     networks:
       - lampenit-net
 
@@ -89,6 +73,8 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
+    env_file:
+      - .env
     volumes:
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
       - lampenit-db-data:/var/lib/postgresql/data

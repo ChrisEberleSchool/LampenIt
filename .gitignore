@@ -20,8 +20,8 @@ game-server/node_modules/
 # builds
 web-server/node_modules/
 #ssl certs
-nginx/ssl/nginx-selfsigned.crt
-nginx/ssl/nginx-selfsigned.key
+nginx/ssl/origin.crt
+nginx/ssl/origin.key
 # ----------------------------------
 
 # ----------- FRONT-END ------------

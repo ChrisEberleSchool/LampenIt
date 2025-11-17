@@ -12,7 +12,7 @@ export default function Register() {
     setError('');
 
     try {
-      const res = await fetch('/api/web/register', {
+      const res = await fetch('/api/web/public/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -21,9 +21,8 @@ export default function Register() {
       const data = await res.json();
 
       if (res.ok) {
-        // Save JWT token or whatever response you get
-        localStorage.setItem('token', data.token || 'demo-token');
-        navigate('/dashboard'); // Redirect after login
+        // Redirect user to login page after successful registration
+        navigate('/login');
       } else {
         setError(data.error || 'Registration failed');
       }
