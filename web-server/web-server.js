@@ -6,6 +6,9 @@ import internalRoutes from './routes/internalRoutes.js';
 const app = express();
 const PORT = process.env.PORT;
 
+// REQUIRED for Express-rate-limit + Nginx
+app.set('trust proxy', 1);
+
 app.use(express.json());
 
 // Mount routes
