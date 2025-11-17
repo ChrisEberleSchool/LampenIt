@@ -1,4 +1,7 @@
 
+# Setup Guide
+- Requires no setup steps.
+
 # How to read tables (LINUX)
 
 1. In a terminal run:

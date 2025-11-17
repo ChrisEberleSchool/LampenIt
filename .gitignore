@@ -3,9 +3,9 @@
 
 # ---------- CLOUDFLARE ------------
 nginx/cloudflared/edit-zone-dns-toke.txt
-nginx/cloudflared/tunnel-uuid.txt
-
 nginx/cloudflared/config.yaml
+nginx/cloudflared/cert.perm
+nginx/cloudflared/lampenit-tunnel.json
 # ----------------------------------
 
 # ---------- NGINX ------------
@@ -19,9 +19,6 @@ game-server/node_modules/
 # ---------- WEB-SERVER ------------
 # builds
 web-server/node_modules/
-#ssl certs
-nginx/ssl/origin.crt
-nginx/ssl/origin.key
 # ----------------------------------
 
 # ----------- FRONT-END ------------
