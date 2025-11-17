@@ -8,8 +8,8 @@ services:
     container_name: lampenit-cloudflared
     restart: unless-stopped
     command: tunnel --no-autoupdate run lampenit-tunnel
-    environment:
-      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    env_file:
+      - .env
     volumes:
       - ./nginx/cloudflared:/etc/cloudflared
     networks:
