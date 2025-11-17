@@ -4,15 +4,15 @@ import { v4 as uuidv4 } from 'uuid';
 export const generateJWT = (user) => {
   return jwt.sign(
     {
-      sub: user.username,        // Subject = username
-      role: user.role || 'user', // Custom claim
-      jti: uuidv4(),             // Unique token ID
+      sub: user.username,        
+      role: user.role || 'user', 
+      jti: uuidv4(),            
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: '1h',            // Token expires in 1 hour
-      issuer: 'myapp.com',        // iss claim
-      audience: 'myapp-frontend', // aud claim
+      expiresIn: '1h',            
+      issuer: 'myapp.com',       
+      audience: 'myapp-frontend', 
     }
   );
 };
