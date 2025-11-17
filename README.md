@@ -24,7 +24,7 @@ Lampen IT uses **Cloudflared Tunnels** instead of open firewall ports. This give
 Setup instructions for the Cloudflare tunnel live in:
 
 ```
-web-server/cloudflared/README.md
+nginx/cloudflared/README.md
 ```
 
 ---
