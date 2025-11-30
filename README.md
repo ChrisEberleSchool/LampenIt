@@ -29,7 +29,7 @@ This diagram shows how requests flow through the system and how containers commu
 --------------------------------------                
 |                                    |
 |               Nginx                |
-|               /   \   HTTPS        |
+|               /   \   HTTP         | # HTTPS is not required internally.
 |              /     \               |
 |  web-server-0  <->  web-server-1   |
 | game-server-0  <->  game-server-1  |
@@ -92,3 +92,8 @@ This diagram shows how requests flow through the system and how containers commu
 4. Docker build regular:
 
         docker compose up --build --force-recreate --remove-orphans -d
+
+## git helper commands
+1. Reset tracking
+
+        git rm -r --cached . 

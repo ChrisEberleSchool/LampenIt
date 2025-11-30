@@ -13,8 +13,17 @@
     ```
     \dt
     ```
-
-2. To view users table:
+3. To view users table:
     ```
     SELECT * FROM users;
+    ```
+
+4. To Delete all users entries:
+    ```
+    DELETE FROM users;
+    ```
+
+5. change permissions of user:
+    ```
+    UPDATE users SET role = 'admin' WHERE username = 'admin';
     ```

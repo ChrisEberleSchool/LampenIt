@@ -15,7 +15,6 @@ nginx/nginx.conf
 # -------- BACKEND-SERVER ----------
 # builds
 backend-server/node_modules/
-backend-server/node_modules/
 # ----------------------------------
 
 # ----------- FRONT-END ------------
