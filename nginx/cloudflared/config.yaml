@@ -1,0 +1,16 @@
+tunnel: <tunnel-id>
+credentials-file: /home/chris/.cloudflared/<tunnel-id>.json
+origincert: /home/chris/.cloudflared/cert.pem 
+
+ingress:
+  - hostname: <domain>
+    service: https://localhost:443
+    originRequest:
+      originServerName: <domain>
+      insecureSkipVerify: true
+  - hostname: www.<domain>
+    service: https://localhost:443
+    originRequest:
+      originServerName: <domain>
+      insecureSkipVerify: true
+  - service: http_status:404
