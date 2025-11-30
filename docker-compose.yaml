@@ -1,16 +1,16 @@
 services:
 
- # ----------------- CLOUDFLARED TUNNEL -----------------
-  cloudflared:
+# ----------------- CLOUDFLARED TUNNEL ----------------- 
+  cloudflared: 
     image: cloudflare/cloudflared:latest
     container_name: lampenit-cloudflared
     restart: unless-stopped
     command: tunnel --no-autoupdate run lampenit-tunnel
-    env_file:
+    env_file: 
       - .env
     volumes:
       - ./nginx/cloudflared:/etc/cloudflared
-    networks:
+    networks: 
       - lampenit-net
 
   # ----------------- NGINX (reverse proxy) -----------------
