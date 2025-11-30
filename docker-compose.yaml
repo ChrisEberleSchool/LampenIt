@@ -1,17 +1,27 @@
-version: "3.9"
-
 services:
+
+ # ----------------- CLOUDFLARED TUNNEL -----------------
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: lampenit-cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run lampenit-tunnel
+    env_file:
+      - .env
+    volumes:
+      - ./nginx/cloudflared:/etc/cloudflared
+    networks:
+      - lampenit-net
 
   # ----------------- NGINX (reverse proxy) -----------------
   nginx:
     image: nginx:latest
-    container_name: lampenit-nginx
+    container_name: lampenit-nginx 
     ports:
-      - "80:80"
-      - "443:443"
+      - "80:80" 
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./front-end/build:/usr/share/nginx/html:ro
     depends_on:
       - frontend-server-0
       - frontend-server-1
@@ -19,6 +29,8 @@ services:
       - game-server-1
     networks:
       - lampenit-net
+    env_file:
+      - .env  
 
   # ----------------- React frontend servers -----------------
   frontend-server-0:
@@ -26,10 +38,8 @@ services:
       context: ./web-server
       dockerfile: Dockerfile
     container_name: lampenit-web-server-0
-    environment:
-      - NODE_ENV=development
-      - PORT=3000
-      - APP_NAME=frontend-server-0
+    env_file:
+      - .env  
     networks:
       - lampenit-net
 
@@ -38,10 +48,8 @@ services:
       context: ./web-server
       dockerfile: Dockerfile
     container_name: lampenit-web-server-1
-    environment:
-      - NODE_ENV=development
-      - PORT=3000
-      - APP_NAME=frontend-server-1
+    env_file:
+      - .env
     networks:
       - lampenit-net
 
@@ -51,10 +59,8 @@ services:
       context: ./game-server
       dockerfile: Dockerfile
     container_name: lampenit-game-server-0
-    environment:
-      - NODE_ENV=development
-      - PORT=3000
-      - APP_NAME=game-server-0
+    env_file:
+      - .env
     networks:
       - lampenit-net
 
@@ -63,15 +69,34 @@ services:
       context: ./game-server
       dockerfile: Dockerfile
     container_name: lampenit-game-server-1
-    environment:
-      - NODE_ENV=development
-      - PORT=3000
-      - APP_NAME=game-server-1
+    env_file:
+      - .env
     networks:
       - lampenit-net
+
+# ----------------------- DB -------------------------
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    env_file:
+      - .env
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - lampenit-db-data:/var/lib/postgresql/data
+    networks:
+      - lampenit-net
+
 
 
 # ----------------- Shared network -----------------
 networks:
   lampenit-net:
     driver: bridge
+
+# ----------------- Named volume for DB -----------------
+volumes:
+  lampenit-db-data:

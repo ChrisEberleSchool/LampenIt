@@ -1,23 +1,36 @@
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import publicRoutes from './routes/publicRoutes.js';
+import privateRoutes from './routes/privateRoutes.js';
+import internalRoutes from './routes/internalRoutes.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
-app.use(express.static(path.join(__dirname, 'build')));
+// Allow all IPs to come through
+app.set('trust proxy', 1);
 
-// Catch all
+
+app.use(express.json());
+
+// --- Log client info middleware ---
 app.use((req, res, next) => {
-  // skip API routes for gameserver
-  if (req.path.startsWith('/api')) return next();
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  console.log('Client IP seen by Express:', req.ip);
+  next();
 });
 
+// --- Log client info middleware ---
+app.use((req, res, next) => {
+  const clientIP = req.ip || req.connection.remoteAddress;
+  console.log(`[${new Date().toISOString()}] ${req.method} request from ${clientIP} to ${req.originalUrl}`);
+  next();
+});
+
+// Mount routes
+app.use('/api/web/public', publicRoutes);
+app.use('/api/web/private', privateRoutes);
+app.use('/api/web/internal', internalRoutes);
+
+// Start server
 app.listen(PORT, () => {
-  console.log(`Frontend server running on port ${PORT}`);
+  console.log(`Web server running on port ${PORT}`);
 });

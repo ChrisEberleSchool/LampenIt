@@ -1,0 +1,22 @@
+.parallaxContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.overlayText {
+  position: relative;
+  z-index: 10;
+  color: white;
+  pointer-events: none;
+}

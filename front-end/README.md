@@ -10,9 +10,6 @@
 
 3. Create the build file.
     
-        npm run build
-
-4. Take a copy of the build file and drag it into web-server dir.
-    
+        npm run build    
 
 ---
