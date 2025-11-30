@@ -1,8 +1,6 @@
 # Lampen IT
 
-A fully self-hosted, full-stack, containerized web experience built with **Node.js**, **Express**, **Nginx**, **Docker**, and secured through a **Cloudflared Tunnel**.
-
-Lampen IT is a modern web application where people can **hang out, chat, explore, and connect** all running on your own infrastructure.
+Dockerized full-stack infrastructure with Node.js backend, react/vite frontend, Nginx reverse proxy, Cloudflared tunnel, API, and game server. Ready for self-hosting secure web services.
 
 ---
 
@@ -12,7 +10,7 @@ This diagram shows how requests flow through the system and how containers commu
 
 ### Containers & Roles
 - **cloudflared** – Connects Cloudflare to home network via a secure tunnel.  
-- **NGINX** – Reverse proxy, routes requests to backend services, applies security headers, serves static frontend files.  
+- **NGINX** – Reverse proxy, routes requests to backend services, applies security headers.  
 - **frontend-server-0 / frontend-server-1** – Web API containers serving the frontend endpoints.  
 - **game-server-0 / game-server-1** – Game API containers handling real-time game logic.  
 - **db** – PostgreSQL database, accessible only by backend containers.  

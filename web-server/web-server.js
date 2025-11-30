@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Mount routesisnt
+// Mount routes
 app.use('/api/web/public', publicRoutes);
 app.use('/api/web/private', privateRoutes);
 app.use('/api/web/internal', internalRoutes);

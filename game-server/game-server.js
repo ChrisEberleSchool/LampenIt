@@ -1,20 +1,36 @@
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
-const replicaApp = process.env.APP_NAME || 'game-server';
+import express from 'express';
+import publicRoutes from './routes/publicRoutes.js';
+import privateRoutes from './routes/privateRoutes.js';
+import internalRoutes from './routes/internalRoutes.js';
 
-const internalAuth = process.env.X_INTERNAL_AUTH;
+const app = express();
+const PORT = process.env.PORT;
+
+// Allow all IPs to come through
+app.set('trust proxy', 1);
+
 
 app.use(express.json());
 
-// Middleware to check Nginx internal header
-app.use('/api/game', (req, res, next) => {
-  if (req.headers['x-internal-auth'] !== internalAuth) {
-    return res.status(403).json({ error: 'Forbidden' });
-  }
+// --- Log client info middleware ---
+app.use((req, res, next) => {
+  console.log('Client IP seen by Express:', req.ip);
   next();
 });
 
-app.listen(port, () => {
-  console.log(`[${replicaApp}] Game server listening on port ${port} (env: ${process.env.NODE_ENV})`);
+// --- Log client info middleware ---
+app.use((req, res, next) => {
+  const clientIP = req.ip || req.connection.remoteAddress;
+  console.log(`[${new Date().toISOString()}] ${req.method} request from ${clientIP} to ${req.originalUrl}`);
+  next();
+});
+
+// Mount routes
+app.use('/api/game/public', publicRoutes);
+app.use('/api/game/private', privateRoutes);
+app.use('/api/game/internal', internalRoutes);
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Web server running on port ${PORT}`);
 });
