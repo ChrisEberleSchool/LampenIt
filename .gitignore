@@ -12,13 +12,10 @@ nginx/cloudflared/lampenit-tunnel.json
 nginx/nginx.conf
 # ----------------------------------
 
-# ---------- GAME-SERVER ------------
-game-server/node_modules/
-# ----------------------------------
-
-# ---------- WEB-SERVER ------------
+# -------- BACKEND-SERVER ----------
 # builds
-web-server/node_modules/
+backend-server/node_modules/
+backend-server/node_modules/
 # ----------------------------------
 
 # ----------- FRONT-END ------------

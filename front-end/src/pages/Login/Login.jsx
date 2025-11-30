@@ -13,7 +13,7 @@ export default function Login() {
 
     try {
       // Login request to your public login endpoint
-      const res = await fetch('/api/web/public/login', {
+      const res = await fetch('/api/public/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -44,7 +44,7 @@ export default function Login() {
     }
 
     try {
-      const res = await fetch('/api/web/private/health', {
+      const res = await fetch('/api/private/health', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`, // JWT goes here

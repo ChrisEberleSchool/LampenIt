@@ -5,9 +5,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --production
 
-COPY web-server.js ./web-server.js
+COPY server.js ./server.js
 
 COPY . .
 
 EXPOSE 3000
-CMD ["node", "web-server.js"]
+CMD ["node", "server.js"]

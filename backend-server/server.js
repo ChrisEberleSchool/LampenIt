@@ -26,11 +26,11 @@ app.use((req, res, next) => {
 });
 
 // Mount routes
-app.use('/api/web/public', publicRoutes);
-app.use('/api/web/private', privateRoutes);
-app.use('/api/web/internal', internalRoutes);
+app.use('/api/public', publicRoutes);
+app.use('/api/private', privateRoutes);
+app.use('/api/internal', internalRoutes);
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Web server running on port ${PORT}`);
+  console.log(`Lampen-IT server running on port ${PORT}`);
 });

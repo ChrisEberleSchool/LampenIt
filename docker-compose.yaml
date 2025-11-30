@@ -23,52 +23,29 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./front-end/build:/usr/share/nginx/html:ro
     depends_on:
-      - frontend-server-0
-      - frontend-server-1
-      - game-server-0
-      - game-server-1
+      - backend-server-0
+      - backend-server-1
     networks:
       - lampenit-net
     env_file:
       - .env  
 
-  # ----------------- React frontend servers -----------------
-  frontend-server-0:
+  # ----------------- Backend servers -----------------
+  backend-server-0:
     build:
-      context: ./web-server
+      context: ./backend-server
       dockerfile: Dockerfile
-    container_name: lampenit-web-server-0
+    container_name: lampenit-backend-server-0
     env_file:
       - .env  
     networks:
       - lampenit-net
 
-  frontend-server-1:
+  backend-server-1:
     build:
-      context: ./web-server
+      context: ./backend-server
       dockerfile: Dockerfile
-    container_name: lampenit-web-server-1
-    env_file:
-      - .env
-    networks:
-      - lampenit-net
-
-  # ----------------- Game servers (API backend) -----------------
-  game-server-0:
-    build:
-      context: ./game-server
-      dockerfile: Dockerfile
-    container_name: lampenit-game-server-0
-    env_file:
-      - .env
-    networks:
-      - lampenit-net
-
-  game-server-1:
-    build:
-      context: ./game-server
-      dockerfile: Dockerfile
-    container_name: lampenit-game-server-1
+    container_name: lampenit-backend-server-1
     env_file:
       - .env
     networks:
