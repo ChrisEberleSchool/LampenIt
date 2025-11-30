@@ -2,7 +2,7 @@
 
 A fully self-hosted, full-stack, containerized web experience built with **Node.js**, **Express**, **Nginx**, **Docker**, and secured through a **Cloudflared Tunnel**.
 
-Lampen IT is a modern web application where people can **hang out, chat, explore, and connect** all running on your own infrastructure.
+Lampen IT is a modern web frontend-backend dockerized infrastructure that users can replicate for self hosting secure services.
 
 ---
 
