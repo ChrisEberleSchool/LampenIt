@@ -29,7 +29,7 @@ This diagram shows how requests flow through the system and how containers commu
 --------------------------------------                
 |                                    |
 |               Nginx                |
-|               /   \   HTTP         |
+|               /   \   HTTPS        |
 |              /     \               |
 |  web-server-0  <->  web-server-1   |
 | game-server-0  <->  game-server-1  |
