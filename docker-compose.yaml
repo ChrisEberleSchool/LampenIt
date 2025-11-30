@@ -1,6 +1,6 @@
 services:
 
- # ----------------- CLOUDFLARED -----------------
+ # ----------------- CLOUDFLARED TUNNEL -----------------
   cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: lampenit-cloudflared
@@ -12,7 +12,6 @@ services:
       - ./nginx/cloudflared:/etc/cloudflared
     networks:
       - lampenit-net
-
 
   # ----------------- NGINX (reverse proxy) -----------------
   nginx:

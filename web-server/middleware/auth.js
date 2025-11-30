@@ -27,8 +27,8 @@ export const verifyJWT = (req, res, next) => {
 
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET, {
-      issuer: 'myapp.com',
-      audience: 'myapp-frontend',
+      issuer: 'fishhub.ca',
+      audience: 'fishhub-frontend',
     });
     req.user = payload;
     next();
