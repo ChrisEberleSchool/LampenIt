@@ -87,7 +87,7 @@ export default function Login() {
         </button>
       </form>
 
-      {/* Optional button to test private API */}
+      {/* Button to test private API. This will work if the user is logged in with proper perms */}
       <button onClick={fetchPrivateData} style={{ marginTop: '1rem' }}>
         Test Private API
       </button>

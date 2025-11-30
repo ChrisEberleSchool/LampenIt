@@ -11,8 +11,8 @@ export const generateJWT = (user) => {
     process.env.JWT_SECRET,
     {
       expiresIn: '1h',            
-      issuer: 'myapp.com',       
-      audience: 'myapp-frontend', 
+      issuer: 'fishhub.ca',       
+      audience: 'lampenit-frontend', 
     }
   );
 };
@@ -28,7 +28,7 @@ export const verifyJWT = (req, res, next) => {
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET, {
       issuer: 'fishhub.ca',
-      audience: 'fishhub-frontend',
+      audience: 'lampenit-frontend',
     });
     req.user = payload;
     next();

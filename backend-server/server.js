@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 
 // --- Log client info middleware ---
 app.use((req, res, next) => {
-  const clientIP = req.ip || req.connection.remoteAddress;
+  const clientIP = req.ip || req.socket.remoteAddress;
   console.log(`[${new Date().toISOString()}] ${req.method} request from ${clientIP} to ${req.originalUrl}`);
   next();
 });
