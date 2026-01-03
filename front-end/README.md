@@ -13,3 +13,6 @@
         npm run build    
 
 ---
+
+## NOTES:
+- This is a template that can be built upon for your website needs.

@@ -4,7 +4,7 @@
 - Copy and paste the code below ensuring to fill in your domain & secret-api-key where applicable. 
 
 ```bash
-worker_processes 2;
+worker_processes auto;
 
 events {
     worker_connections 1024;
@@ -16,22 +16,16 @@ http {
     default_type text/html;
 
     # --- Load balancers ---
-    upstream frontend_servers {
+    upstream backend-servers {
         least_conn;
-        server frontend-server-0:3000;
-        server frontend-server-1:3000;
-    }
-
-    upstream game_servers {
-        least_conn;
-        server game-server-0:3000;
-        server game-server-1:3000;
+        server backend-server-0:3000;
+        server backend-server-1:3000;
     }
 
     # --- HTTP ONLY (AS NGINX IS INTERNAL)---
     server {
         listen 80;
-        server_name <domain> www.<domain>;
+        server_name <DOMAIN> www.<DOMAIN>;
 
         # --- Cross-Origin Policies ---
         add_header Cross-Origin-Opener-Policy "same-origin" always;
@@ -47,12 +41,7 @@ http {
         add_header X-XSS-Protection "1; mode=block" always;
 
         # --- Content Security Policy ---
-        add_header Content-Security-Policy "
-            default-src 'self';
-            script-src 'self' https://static.cloudflareinsights.com;
-            object-src 'none';
-            frame-ancestors 'none';
-        " always;
+        add_header Content-Security-Policy "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; object-src 'none'; frame-ancestors 'none';" always;
 
         # --- Caching ---
         add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0" always;
@@ -76,25 +65,15 @@ http {
             try_files $uri /index.html;
         }
 
-        # ====== Web API (Auth, profiles, user backend) ======
-        location /api/web/ { 
-            proxy_pass http://frontend_servers;
+        # ====== BACKEND API (Auth, profiles, user backend) ======
+        location /api/ { 
+            proxy_pass http://backend-servers;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $http_cf_connecting_ip;
             proxy_set_header X-Forwarded-For $http_cf_connecting_ip;
         
             # Auth Key for Internal API calls
-            proxy_set_header X-Internal-Auth <created-auth-token>;
-        }
-        # ====== Game API (lobbies, match, sockets) ======
-        location /api/game/ {
-            proxy_pass http://game_servers;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $http_cf_connecting_ip;
-            proxy_set_header X-Forwarded-For $http_cf_connecting_ip;
-            
-            # Auth Key for Internal API calls
-            proxy_set_header X-Internal-Auth <created-auth-token>;
+            proxy_set_header X-Internal-Auth <AUTH-KEY>
         }
     }
 }

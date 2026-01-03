@@ -1,13 +1,6 @@
 # Environment variables
 .env
 
-# ---------- CLOUDFLARE ------------
-nginx/cloudflared/edit-zone-dns-toke.txt
-nginx/cloudflared/config.yaml
-nginx/cloudflared/cert.perm
-nginx/cloudflared/lampenit-tunnel.json
-# ----------------------------------
-
 # ---------- NGINX ------------
 nginx/nginx.conf
 # ----------------------------------

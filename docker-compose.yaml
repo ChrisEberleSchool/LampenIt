@@ -5,11 +5,9 @@ services:
     image: cloudflare/cloudflared:latest
     container_name: lampenit-cloudflared
     restart: unless-stopped
-    command: tunnel --no-autoupdate run lampenit-tunnel
     env_file: 
       - .env
-    volumes:
-      - ./nginx/cloudflared:/etc/cloudflared
+    command: tunnel run --token ${CLOUDFLARE_TUNNEL_TOKEN}
     networks: 
       - lampenit-net
 
@@ -66,7 +64,6 @@ services:
       - lampenit-db-data:/var/lib/postgresql/data
     networks:
       - lampenit-net
-
 
 
 # ----------------- Shared network -----------------
