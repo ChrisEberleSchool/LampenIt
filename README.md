@@ -91,7 +91,7 @@ This diagram shows how requests flow through the system and how containers commu
 
 4. Docker build regular:
 
-        docker compose up --build --force-recreate --remove-orphans -d
+        ocker compose up --build --force-recreate -d
 
 ## git helper commands
 1. Reset tracking
